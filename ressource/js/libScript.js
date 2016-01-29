@@ -3,40 +3,48 @@
 $(document).ready(function() {
 
     var  movies;
+	function refresh(){
         $.get('app/ajax_refresh.php', function(data) {
                 localStorage.setItem("movies", data);
                 
                 movies =$.parseJSON(data);
-				console.log(movies);
+				// console.log(movies);
+				updateTable('all');
         });
-        
+    }    
 		
 		
-	
+	function updateJoke(){
+		 $.get('http://api.icndb.com/jokes/random/', function(data) {
+			// console.log(data);
+			$('#joke').text(data.value.joke);
+        });
+		
+	}
         
     
    
     
     
     $('#refresh').click(function(){
-        console.log(movies);
-        updateTable('all')
+        refresh();
+        updateJoke();
     });
 	
     $('#scanDir').click(function(){
-        console.log(movies);
-		scanDrive();
-        updateTable('all')
+		scanDrive(); 
     });
     
 
     $('input[type=radio][class=genreradio]').change(function() {
-        console.log(this.value);
+        console.log('selected Genre: '+this.value);
         updateTable(this.value);
     });
 
 	function scanDrive(){
 		        $.get('app/ajax_scandrive.php', function(data) {
+					console.log('mapped movies vom drive to database');
+					refresh();
         });
 	}
  
@@ -60,9 +68,9 @@ $(document).ready(function() {
     // Function which sorts the data for the Table
     // param: value (Movie genre)
     function updateTable(value) {
-        
+        console.log('updating Table');
         if(movies == null){
-            retrieveMovies();
+            refresh();
         }
         var filteredMovies = [];
         
@@ -122,6 +130,8 @@ function buildHtmlTable(filtedMovies) {
 		
 }
 
+//initial load;
+refresh();
 
 
 

@@ -14,3 +14,5 @@ $genres= [
 ];
 
 define ("GENRES", serialize ($genres));
+// mysqli connection parameters: host, user, password, database
+$d = ["localhost", "root", "", "media"];

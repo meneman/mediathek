@@ -9,7 +9,7 @@ include '../core/FTPFilesystem.php';
 include './config.php';
 
 $genres = unserialize(GENRES);
-$mysqli = new mysqli("localhost", "root", "", "media");
+$mysqli = new mysqli($d[0],$d[1],$d[2],$d[3]);
 
 
 if ($mysqli->connect_errno) {

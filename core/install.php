@@ -5,7 +5,7 @@ include '../app/config.php';
 // the tables still have to be created manually
 
 $genres = unserialize(GENRES);
-$mysqli = new mysqli("localhost", "root", "", "media");
+$mysqli = new mysqli($d[0],$d[1],$d[2],$d[3]);
 
 
 /* check connection */

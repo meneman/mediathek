@@ -131,8 +131,7 @@ function buildHtmlTable(filtedMovies) {
 }
 
 //initial load;
-refresh();
-
+$('#refresh').trigger("click");
 
 
 

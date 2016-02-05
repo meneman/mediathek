@@ -22,11 +22,11 @@ if($genre == 'all'){
 
 
 $query = '
-SELECT movies.created_at,movies.movie_name, group_concat(genres.genre_name) AS genre_names FROM genres
+SELECT movies.created_at,movies.movie_name, group_concat(genres.genre_name) AS genre_names FROM genres 
 INNER JOIN genre_movie ON genres.id = genre_movie.genre_id 
 INNER JOIN movies ON movies.id = genre_movie.movie_id
-GROUP BY movies.movie_name;';
-
+GROUP BY movies.movie_name
+ORDER BY created_at DESC;';
 
 $mysqli->query($query);
 
